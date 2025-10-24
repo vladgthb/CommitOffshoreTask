@@ -124,7 +124,7 @@ The guide includes:
 ```
 CommitOffshoreTask/
 ├── README.md                 # This file
-├── task1/                    # Task 1: Mini Storefront Next.js application
+├── storefront/               # Task 1: Mini Storefront Next.js application
 ├── task2/                    # Task 2 (Coming Soon)
 └── task3/                    # Task 3 (Coming Soon)
 ```
