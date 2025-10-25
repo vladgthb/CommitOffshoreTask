@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Product } from '@/lib/types';
 import { varFiltersCg } from '@/lib/api';
 import ProductGrid from './ProductGrid';
@@ -14,15 +15,27 @@ export default function ProductListWithFilters({
   initialProducts,
   categories,
 }: ProductListWithFiltersProps) {
-  const [selectedCategory, setSelectedCategory] = useState<string>(
-    varFiltersCg.defaultCategory
-  );
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  // Initialize from URL query params or varFiltersCg default
+  const initialCategory = searchParams.get('category') || varFiltersCg.defaultCategory;
+
+  const [selectedCategory, setSelectedCategory] = useState<string>(initialCategory);
   const [products, setProducts] = useState<Product[]>(initialProducts);
   const [loading, setLoading] = useState(false);
 
   const handleCategoryChange = async (category: string) => {
     setSelectedCategory(category);
     setLoading(true);
+
+    // Update URL with new category filter
+    const params = new URLSearchParams();
+    if (category !== 'all' && category !== varFiltersCg.defaultCategory) {
+      params.set('category', category);
+    }
+    const queryString = params.toString();
+    router.push(queryString ? `/?${queryString}` : '/', { scroll: false });
 
     try {
       let url = '/api/products';
@@ -51,6 +64,15 @@ export default function ProductListWithFilters({
       setLoading(false);
     }
   };
+
+  // Sync with URL changes (e.g., browser back/forward)
+  useEffect(() => {
+    const categoryFromUrl = searchParams.get('category') || varFiltersCg.defaultCategory;
+    if (categoryFromUrl !== selectedCategory) {
+      handleCategoryChange(categoryFromUrl);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
 
   if (!varFiltersCg.enableCategoryFilter) {
     return <ProductGrid products={products} />;

@@ -1,4 +1,4 @@
-import { getAllProducts, getProductCategories } from '@/lib/api';
+import { getAllProducts, getProductCategories, getProductsByCategory, varFiltersCg } from '@/lib/api';
 import ProductListWithFilters from '@/components/ProductListWithFilters';
 
 export const metadata = {
@@ -17,9 +17,21 @@ export const metadata = {
   },
 };
 
-export default async function HomePage() {
+interface HomePageProps {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
+
+export default async function HomePage({ searchParams }: HomePageProps) {
+  const params = await searchParams;
+  const categoryParam = typeof params.category === 'string' ? params.category : undefined;
+
+  // Fetch products based on URL query parameter or varFiltersCg default
+  const initialCategory = categoryParam || varFiltersCg.defaultCategory;
+
   const [products, categories] = await Promise.all([
-    getAllProducts(),
+    initialCategory === 'all' || !categoryParam
+      ? getAllProducts()
+      : getProductsByCategory(categoryParam),
     getProductCategories(),
   ]);
 
