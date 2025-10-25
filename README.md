@@ -10,7 +10,7 @@ This repository showcases solutions to three distinct technical tasks, each focu
 
 - **Task 1**: Next.js Mini Storefront with Dynamic Previews
 - **Task 2**: Bracket Combinations Algorithm (Python)
-- **Task 3**: Coming Soon
+- **Task 3**: Coderbyte Programming Challenges
 
 ---
 
@@ -108,6 +108,16 @@ C(n) = C(2n, n) / (n + 1)
 ```bash
 brackets-combinations/main.py
 ```
+
+---
+
+## 🎯 Task 3: Coderbyte Programming Challenges
+
+### Overview
+Additional programming challenges completed on the Coderbyte platform.
+
+### Platform
+**[Coderbyte Challenges](https://coderbyte.com/challenges)**
 
 ---
 
