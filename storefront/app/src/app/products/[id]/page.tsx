@@ -30,6 +30,12 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   }
 
   // __define-ocg__: Open Graph configuration for social media previews
+  const baseUrl = process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : 'http://localhost:3000';
+
+  const ogImageUrl = `${baseUrl}/api/og?title=${encodeURIComponent(product.title)}&price=${product.price}`;
+
   return {
     title: product.title,
     description: product.description,
@@ -38,7 +44,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
       description: product.description,
       images: [
         {
-          url: `/api/og?title=${encodeURIComponent(product.title)}&price=${product.price}`,
+          url: ogImageUrl,
           width: varOcg.imageWidth,
           height: varOcg.imageHeight,
           alt: product.title,
@@ -49,7 +55,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
       card: 'summary_large_image',
       title: product.title,
       description: product.description,
-      images: [`/api/og?title=${encodeURIComponent(product.title)}&price=${product.price}`],
+      images: [ogImageUrl],
     },
   };
 }
