@@ -4,6 +4,17 @@ import ProductGrid from '@/components/ProductGrid';
 export const metadata = {
   title: 'Mini Storefront - Browse Products',
   description: 'Browse our collection of quality products',
+  openGraph: {
+    title: 'Mini Storefront - Browse Products',
+    description: 'Browse our collection of quality products from top brands',
+    type: 'website',
+    locale: 'en_US',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Mini Storefront - Browse Products',
+    description: 'Browse our collection of quality products from top brands',
+  },
 };
 
 export default async function HomePage() {

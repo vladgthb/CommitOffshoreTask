@@ -33,7 +33,11 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL
     || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
 
-  const ogImageUrl = `${baseUrl}/api/og?title=${encodeURIComponent(product.title)}&price=${product.price}`;
+  const ogImageUrl = `${baseUrl}/api/og?title=${encodeURIComponent(
+    product.title
+  )}&price=${product.price}&image=${encodeURIComponent(
+    product.image
+  )}`;
 
   return {
     title: product.title,

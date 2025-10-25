@@ -8,6 +8,7 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const title = searchParams.get('title') || 'Product';
     const price = searchParams.get('price') || '0.00';
+    const imageUrl = searchParams.get('image');
 
     return new ImageResponse(
       (
@@ -37,6 +38,19 @@ export async function GET(request: NextRequest) {
               margin: '0 40px',
             }}
           >
+            {imageUrl && (
+              <img
+                src={imageUrl}
+                alt="Product"
+                width={200}
+                height={200}
+                style={{
+                  objectFit: 'contain',
+                  marginBottom: '30px',
+                  borderRadius: '12px',
+                }}
+              />
+            )}
             <h1
               style={{
                 fontSize: '60px',

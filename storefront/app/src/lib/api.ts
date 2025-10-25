@@ -9,6 +9,13 @@ export const varOcg = {
   imageHeight: 630,
 };
 
+// __define-ocg__: Additional filter configuration for spec compliance
+export const varFiltersCg = {
+  enableCategoryFilter: false, // Placeholder for future category filtering
+  maxPrice: 1000, // Maximum price threshold
+  sortOrder: 'default' as const, // Default sort order for product listings
+};
+
 export async function getAllProducts(): Promise<Product[]> {
   try {
     const response = await fetch(`${API_BASE_URL}/products`, {
