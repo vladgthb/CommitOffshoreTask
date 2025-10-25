@@ -16,6 +16,9 @@ This repository showcases solutions to three distinct technical tasks, each focu
 
 ## 🎯 Task 1: Mini Storefront with Dynamic Previews
 
+### 🌐 Live Demo
+**[https://commit-offshore-task.vercel.app/](https://commit-offshore-task.vercel.app/)**
+
 ### Overview
 Build a small storefront using Next.js that showcases products from the Fake Store API. The application features dynamic routing, optimized images, and social media-ready Open Graph metadata.
 
@@ -31,6 +34,38 @@ Create a modern, performant e-commerce storefront that includes:
 - ✅ Optimized images using `next/image`
 - ✅ Dynamic Open Graph (OG) metadata per product
 - ✅ Clean component structure and styling
+
+### 📸 Screenshots
+
+#### Products List
+![Products List](./assets/storefront/products_list_preview.png)
+*Responsive grid layout showcasing all products with images, prices, and ratings*
+
+#### Product Detail Page
+![Product Detail](./assets/storefront/product_detailed_preview.png)
+*Detailed product view with full description, pricing, and add to cart functionality*
+
+#### Open Graph Preview
+![Open Graph Preview](./assets/storefront/opengraph_preview.png)
+*Dynamic Open Graph image generation for social media sharing (WhatsApp, Twitter, LinkedIn)*
+
+### ✨ Key Features Implemented
+
+- ✅ **Next.js 16.0.0** with App Router and Server Components
+- ✅ **TypeScript** for full type safety
+- ✅ **Tailwind CSS v4** for modern, responsive styling
+- ✅ **Dynamic Routing** with static site generation (SSG)
+- ✅ **Incremental Static Regeneration (ISR)** with 1-hour revalidation
+- ✅ **Image Optimization** using Next.js Image component
+- ✅ **Dynamic Open Graph Images** using @vercel/og
+- ✅ **Error Boundaries** with custom 404 and error pages
+- ✅ **Loading States** with skeleton UI
+- ✅ **Responsive Design** (mobile, tablet, desktop)
+- ✅ **Hover Effects** and smooth transitions
+- ✅ **SEO Optimized** with metadata for every page
+- ✅ **Social Media Ready** with OG tags for WhatsApp, Twitter, LinkedIn
+- ✅ **CI/CD Pipeline** with GitHub Actions
+- ✅ **Production Deployment** on Vercel with Edge Functions
 
 ---
 
@@ -90,20 +125,6 @@ Navigate to the Task 1 directory and follow the detailed guide:
 ```bash
 cd storefront
 ```
-
-Read the comprehensive implementation guide:
-```bash
-cat TODO_TASK_1.md
-```
-
-The guide includes:
-- Step-by-step setup instructions
-- Complete code examples
-- Component architecture
-- API integration patterns
-- Open Graph implementation
-- Testing and deployment strategies
-
 ---
 
 ## 🛠️ Tech Stack
@@ -155,31 +176,76 @@ Each task includes comprehensive testing requirements:
 - **Performance Testing**: Lighthouse scores 90+
 - **Accessibility Testing**: Keyboard navigation and screen readers
 
+### Testing Open Graph Images (Task 1)
+
+Verify that social media previews work correctly:
+
+#### 1. Using Open Graph Debugger
+Visit [opengraph.xyz](https://www.opengraph.xyz/) and test any product URL:
+
+```
+https://commit-offshore-task.vercel.app/products/1
+```
+
+**Expected Results:**
+- ✅ Preview shows product title and price
+- ✅ Image displays with blue gradient background
+- ✅ Image dimensions: 1200x630px
+- ✅ All meta tags present (og:title, og:description, og:image)
+
+#### 2. Using Facebook Sharing Debugger
+Visit [Facebook Debugger](https://developers.facebook.com/tools/debug/) to test:
+
+```
+https://commit-offshore-task.vercel.app/products/1
+```
+
+Click **"Scrape Again"** to refresh the cache.
+
+#### 3. Testing in Social Media Platforms
+
+**WhatsApp:**
+- Share any product URL in a chat
+- Wait 5-10 seconds for preview to load
+- Should display product image with title and price
+
+**Twitter/X:**
+- Paste product URL in tweet composer
+- Should show Twitter Card preview with product details
+
+**LinkedIn:**
+- Paste product URL in post composer
+- Should display rich preview with product information
+
+#### 4. Direct API Testing
+Test the OG image generation API directly:
+
+```
+https://commit-offshore-task.vercel.app/api/og?title=Test%20Product&price=99.99
+```
+
+Should return a PNG image with the provided title and price.
+
+**Note:** If previews don't appear immediately in WhatsApp, clear the cache using Facebook's debugger tool, as WhatsApp uses Facebook's crawler and caches previews aggressively.
+
 ---
 
 ## 🚢 Deployment
 
+### Task 1 - Live Production URL
+**[https://commit-offshore-task.vercel.app/](https://commit-offshore-task.vercel.app/)**
+
 The application is deployed to **Vercel** with automated CI/CD using GitHub Actions.
 
-### Features:
+### Deployment Features:
 - ✅ Automated deployments on push to main/master
 - ✅ Preview deployments for pull requests
 - ✅ Automatic linting and type checking
 - ✅ Production builds with artifact caching
 - ✅ PR comments with preview URLs
-
-### Quick Deploy:
-For detailed deployment instructions including CI/CD setup, see:
-```bash
-cat storefront/DEPLOYMENT.md
-```
-
-The deployment guide includes:
-- One-click Vercel deployment
-- Vercel CLI instructions
-- Complete CI/CD setup with GitHub Actions
-- GitHub Secrets configuration
-- Troubleshooting and post-deployment verification
+- ✅ Global CDN distribution
+- ✅ Automatic HTTPS with SSL certificates
+- ✅ Edge Functions for OG image generation
 
 ---
 
