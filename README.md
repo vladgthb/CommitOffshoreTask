@@ -106,7 +106,7 @@ C(n) = C(2n, n) / (n + 1)
 
 ### 📁 Location
 ```bash
-brakets-combination/main.py
+brackets-combinations/main.py
 ```
 
 ---
@@ -190,7 +190,8 @@ cd storefront
 CommitOffshoreTask/
 ├── README.md                 # This file
 ├── storefront/               # Task 1: Mini Storefront Next.js application
-├── task2/                    # Task 2 (Coming Soon)
+├── brackets-combinations/    # Task 2: Bracket Combinations Python solution
+│   └── main.py              # Python implementation
 └── task3/                    # Task 3 (Coming Soon)
 ```
 
@@ -326,4 +327,4 @@ For questions or issues related to these tasks, please refer to the individual t
 
 **Last Updated**: 2025
 
-**Status**: Task 1 - ✅ Completed (100%) | Task 2 - Pending | Task 3 - Pending
+**Status**: Task 1 - ✅ Completed (100%) | Task 2 - ✅ Completed (100%) | Task 3 - Pending
