@@ -39,6 +39,7 @@ Create a modern, performant e-commerce storefront that includes:
 ### 📸 Screenshots
 
 #### Products List
+![Products List](./assets/storefront/products_list__preview.png)
 ![Products List](./assets/storefront/products_list_preview.png)
 *Responsive grid layout showcasing all products with images, prices, and ratings*
 
