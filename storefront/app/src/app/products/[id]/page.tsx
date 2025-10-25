@@ -30,9 +30,8 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   }
 
   // __define-ocg__: Open Graph configuration for social media previews
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : 'http://localhost:3000';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL
+    || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
 
   const ogImageUrl = `${baseUrl}/api/og?title=${encodeURIComponent(product.title)}&price=${product.price}`;
 
