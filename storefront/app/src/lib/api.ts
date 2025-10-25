@@ -11,9 +11,10 @@ export const varOcg = {
 
 // __define-ocg__: Additional filter configuration for spec compliance
 export const varFiltersCg = {
-  enableCategoryFilter: false, // Placeholder for future category filtering
+  enableCategoryFilter: true, // Enable category filtering in UI
   maxPrice: 1000, // Maximum price threshold
   sortOrder: 'default' as const, // Default sort order for product listings
+  defaultCategory: 'all', // Default category selection
 };
 
 export async function getAllProducts(): Promise<Product[]> {
@@ -75,6 +76,23 @@ export async function getProductCategories(): Promise<string[]> {
     return await response.json();
   } catch (error) {
     console.error('Error fetching categories:', error);
+    return [];
+  }
+}
+
+export async function getProductsByCategory(category: string): Promise<Product[]> {
+  try {
+    const response = await fetch(`${API_BASE_URL}/products/category/${category}`, {
+      next: { revalidate: 3600 },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch products for category: ${category}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error(`Error fetching products for category ${category}:`, error);
     return [];
   }
 }

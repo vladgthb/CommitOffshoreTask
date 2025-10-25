@@ -1,5 +1,5 @@
-import { getAllProducts } from '@/lib/api';
-import ProductGrid from '@/components/ProductGrid';
+import { getAllProducts, getProductCategories } from '@/lib/api';
+import ProductListWithFilters from '@/components/ProductListWithFilters';
 
 export const metadata = {
   title: 'Mini Storefront - Browse Products',
@@ -18,7 +18,10 @@ export const metadata = {
 };
 
 export default async function HomePage() {
-  const products = await getAllProducts();
+  const [products, categories] = await Promise.all([
+    getAllProducts(),
+    getProductCategories(),
+  ]);
 
   return (
     <main className="min-h-screen bg-gray-50 py-8">
@@ -32,7 +35,10 @@ export default async function HomePage() {
           </p>
         </div>
 
-        <ProductGrid products={products} />
+        <ProductListWithFilters
+          initialProducts={products}
+          categories={categories}
+        />
       </div>
     </main>
   );
