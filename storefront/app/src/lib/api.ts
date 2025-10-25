@@ -19,7 +19,18 @@ export const varFiltersCg = {
 
 export async function getAllProducts(): Promise<Product[]> {
   try {
-    const response = await fetch(`${API_BASE_URL}/products`, {
+    // Build URL using varFiltersCg configuration
+    const url = `${API_BASE_URL}/products`;
+    const params = new URLSearchParams();
+
+    if (varFiltersCg.sortOrder !== 'default') {
+      params.append('sort', varFiltersCg.sortOrder);
+    }
+
+    const queryString = params.toString();
+    const finalUrl = queryString ? `${url}?${queryString}` : url;
+
+    const response = await fetch(finalUrl, {
       next: { revalidate: 3600 }, // Revalidate every hour
     });
 
@@ -27,7 +38,12 @@ export async function getAllProducts(): Promise<Product[]> {
       throw new Error('Failed to fetch products');
     }
 
-    return await response.json();
+    const products = await response.json();
+
+    // Apply maxPrice filter from varFiltersCg
+    return products.filter((product: Product) =>
+      !varFiltersCg.maxPrice || product.price <= varFiltersCg.maxPrice
+    );
   } catch (error) {
     console.error('Error fetching products:', error);
     return [];
@@ -82,7 +98,18 @@ export async function getProductCategories(): Promise<string[]> {
 
 export async function getProductsByCategory(category: string): Promise<Product[]> {
   try {
-    const response = await fetch(`${API_BASE_URL}/products/category/${category}`, {
+    // Build URL using varFiltersCg configuration
+    const url = `${API_BASE_URL}/products/category/${category}`;
+    const params = new URLSearchParams();
+
+    if (varFiltersCg.sortOrder !== 'default') {
+      params.append('sort', varFiltersCg.sortOrder);
+    }
+
+    const queryString = params.toString();
+    const finalUrl = queryString ? `${url}?${queryString}` : url;
+
+    const response = await fetch(finalUrl, {
       next: { revalidate: 3600 },
     });
 
@@ -90,7 +117,12 @@ export async function getProductsByCategory(category: string): Promise<Product[]
       throw new Error(`Failed to fetch products for category: ${category}`);
     }
 
-    return await response.json();
+    const products = await response.json();
+
+    // Apply maxPrice filter from varFiltersCg
+    return products.filter((product: Product) =>
+      !varFiltersCg.maxPrice || product.price <= varFiltersCg.maxPrice
+    );
   } catch (error) {
     console.error(`Error fetching products for category ${category}:`, error);
     return [];
