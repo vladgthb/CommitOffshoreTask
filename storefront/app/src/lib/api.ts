@@ -36,7 +36,19 @@ export async function getProductById(id: string): Promise<Product | null> {
       return null;
     }
 
-    return await response.json();
+    // Check if response has content
+    const text = await response.text();
+    if (!text || text.trim().length === 0) {
+      return null;
+    }
+
+    // Parse the JSON
+    try {
+      return JSON.parse(text);
+    } catch (jsonError) {
+      console.error(`Error parsing JSON for product ${id}:`, jsonError);
+      return null;
+    }
   } catch (error) {
     console.error(`Error fetching product ${id}:`, error);
     return null;
