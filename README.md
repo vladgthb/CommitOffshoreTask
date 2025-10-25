@@ -1,6 +1,6 @@
 # Commit Offshore Test Tasks
 
-This project contains **Commit Offshore's Test Tasks**, a comprehensive collection of 3 frontend engineering challenges designed to demonstrate proficiency in modern web development technologies and best practices.
+This project contains **Commit Offshore's Test Tasks**, a comprehensive collection of 3 engineering challenges designed to demonstrate proficiency in modern web development technologies and best practices.
 
 ---
 
@@ -25,6 +25,7 @@ Build a small storefront using Next.js that showcases products from the Fake Sto
 ### Special Requirements
 - ✅ Solution must contain the keyword `__define-ocg__` in at least one comment
 - ✅ At least one variable must be named `varOcg`
+- ✅ At least one variable must be named `varFiltersCg`
 
 ### Goal
 Create a modern, performant e-commerce storefront that includes:
@@ -45,9 +46,13 @@ Create a modern, performant e-commerce storefront that includes:
 ![Product Detail](./assets/storefront/product_detailed_preview.png)
 *Detailed product view with full description, pricing, and add to cart functionality*
 
-#### Open Graph Preview
+#### Open Graph Preview (Product Details)
 ![Open Graph Preview](./assets/storefront/opengraph_preview.png)
-*Dynamic Open Graph image generation for social media sharing (WhatsApp, Twitter, LinkedIn)*
+*Dynamic Open Graph image generation for individual product pages - optimized for social media sharing (WhatsApp, Twitter, LinkedIn)*
+
+#### Open Graph Preview (Product Listings with Filters)
+![Products OG Preview](./assets/storefront/products_og_preview.png)
+*Dynamic Open Graph image generation for filtered product listings - displays active filters (category, sort order, price range) in the preview image*
 
 ### ✨ Key Features Implemented
 
@@ -57,7 +62,15 @@ Create a modern, performant e-commerce storefront that includes:
 - ✅ **Dynamic Routing** with static site generation (SSG)
 - ✅ **Incremental Static Regeneration (ISR)** with 1-hour revalidation
 - ✅ **Image Optimization** using Next.js Image component
-- ✅ **Dynamic Open Graph Images** using @vercel/og
+- ✅ **Dynamic Open Graph Images** using @vercel/og (both for product details and filtered product listings)
+- ✅ **Advanced Product Filtering System**:
+  - Category filtering (electronics, jewelery, men's clothing, women's clothing)
+  - Price range filtering (predefined ranges: Under $50, $50-$100, $100-$200, $200+)
+  - Price sorting (low to high, high to low)
+  - URL-based state management (all filters reflected in URL for sharing and bookmarking)
+  - Real-time filter updates
+  - Browser back/forward navigation support
+- ✅ **Dynamic OG Images for Filtered Views**: When sharing filtered product lists, the Open Graph image automatically displays active filters (category, sort order, price range) with visual badges
 - ✅ **Error Boundaries** with custom 404 and error pages
 - ✅ **Loading States** with skeleton UI
 - ✅ **Responsive Design** (mobile, tablet, desktop)
@@ -273,15 +286,28 @@ Click **"Scrape Again"** to refresh the cache.
 - Should display rich preview with product information
 
 #### 4. Direct API Testing
-Test the OG image generation API directly:
 
+**Test Product Detail OG Image:**
 ```
 https://commit-offshore-task.vercel.app/api/og?title=Test%20Product&price=99.99
 ```
-
 Should return a PNG image with the provided title and price.
 
-**Note:** If previews don't appear immediately in WhatsApp, clear the cache using Facebook's debugger tool, as WhatsApp uses Facebook's crawler and caches previews aggressively.
+**Test Product Listing OG Image (with filters):**
+```
+https://commit-offshore-task.vercel.app/api/og/list?category=electronics&sort=asc&minPrice=50&maxPrice=100
+```
+Should return a PNG image displaying the active filters with visual badges.
+
+**Test Filtered Product Listing Pages:**
+```
+https://commit-offshore-task.vercel.app/?category=electronics&sort=asc&minPrice=50&maxPrice=100
+```
+The page metadata should include OG tags with the dynamically generated image showing active filters.
+
+**Note:**
+- If previews don't appear immediately in WhatsApp, clear the cache using Facebook's debugger tool, as WhatsApp uses Facebook's crawler and caches previews aggressively.
+- The preview images shown in screenshots are static. The actual OG images can be generated dynamically based on the real-time appearance of the web page by implementing screenshot-based generation in the backend. This functionality would capture the actual rendered page state, but is not included in the current implementation as it's outside the project requirements.
 
 ---
 
