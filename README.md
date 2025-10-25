@@ -159,7 +159,27 @@ Each task includes comprehensive testing requirements:
 
 ## 🚢 Deployment
 
-The application is deployed to **Vercel** for optimal Next.js performance and seamless integration with the framework's features.
+The application is deployed to **Vercel** with automated CI/CD using GitHub Actions.
+
+### Features:
+- ✅ Automated deployments on push to main/master
+- ✅ Preview deployments for pull requests
+- ✅ Automatic linting and type checking
+- ✅ Production builds with artifact caching
+- ✅ PR comments with preview URLs
+
+### Quick Deploy:
+For detailed deployment instructions including CI/CD setup, see:
+```bash
+cat storefront/DEPLOYMENT.md
+```
+
+The deployment guide includes:
+- One-click Vercel deployment
+- Vercel CLI instructions
+- Complete CI/CD setup with GitHub Actions
+- GitHub Secrets configuration
+- Troubleshooting and post-deployment verification
 
 ---
 
@@ -196,4 +216,4 @@ For questions or issues related to these tasks, please refer to the individual t
 
 **Last Updated**: 2025
 
-**Status**: Task 1 - In Progress | Task 2 - Pending | Task 3 - Pending
+**Status**: Task 1 - ✅ Completed (100%) | Task 2 - Pending | Task 3 - Pending
