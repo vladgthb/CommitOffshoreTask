@@ -44,11 +44,11 @@ Create a modern, performant e-commerce storefront that includes:
 *Responsive grid layout showcasing all products with images, prices, and ratings*
 
 #### Product Detail Page
-![Product Details](./assets/storefront/product_detailed_preview.png)
+![Product Details](./assets/storefront/product_details.png)
 *Detailed product view with full description, pricing, and add to cart functionality*
 
 #### Open Graph Preview (Product Details)
-![Product OG Preview](./assets/storefront/opengraph_preview.png)
+![Product OG Preview](./assets/storefront/product_details_preview.png)
 *Dynamic Open Graph image generation for individual product pages - optimized for social media sharing (WhatsApp, Twitter, LinkedIn)*
 
 #### Open Graph Preview (Product Listings with Filters)
