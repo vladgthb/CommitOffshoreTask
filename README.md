@@ -9,7 +9,7 @@ This project contains **Commit Offshore's Test Tasks**, a comprehensive collecti
 This repository showcases solutions to three distinct technical tasks, each focusing on different aspects of frontend development:
 
 - **Task 1**: Next.js Mini Storefront with Dynamic Previews
-- **Task 2**: Coming Soon
+- **Task 2**: Bracket Combinations Algorithm (Python)
 - **Task 3**: Coming Soon
 
 ---
@@ -69,7 +69,51 @@ Create a modern, performant e-commerce storefront that includes:
 
 ---
 
+## 🎯 Task 2: Bracket Combinations Algorithm
+
+### Overview
+Implement a function `BracketCombinations(num)` that calculates the number of valid combinations that can be formed with `num` pairs of parentheses.
+
+### Special Requirements
+- ✅ Solution must contain the keyword `__define-ocg__` in at least one comment
+- ✅ At least one variable must be named `varFiltersCg`
+
+### Problem Description
+Given an integer `num` (greater than or equal to zero), return the number of valid combinations of `num` pairs of parentheses.
+
+**Examples:**
+- Input: `3` → Output: `5`
+  - Valid combinations: `()()()`, `(())()`, `()()()`, `((()))`, `(()())`
+- Input: `2` → Output: `2`
+  - Valid combinations: `()()`, `(())`
+
+### Solution Approach
+This problem is solved using the **Catalan number** formula:
+```
+C(n) = (2n)! / ((n+1)! × n!)
+```
+
+Which can be simplified using binomial coefficients:
+```
+C(n) = C(2n, n) / (n + 1)
+```
+
+### ✨ Key Features Implemented
+- ✅ Efficient mathematical solution using Catalan numbers
+- ✅ Clean, readable code with proper documentation
+- ✅ Test cases included for verification
+- ✅ Special variable naming requirements met
+
+### 📁 Location
+```bash
+brakets-combination/main.py
+```
+
+---
+
 ## 📖 Detailed Requirements
+
+### Task 1 Requirements
 
 ### 1. Routing
 - The homepage (`/`) should list all products fetched from the Fake Store API
