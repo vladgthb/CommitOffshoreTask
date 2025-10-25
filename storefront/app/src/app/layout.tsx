@@ -7,6 +7,22 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Mini Storefront",
   description: "A modern storefront built with Next.js",
+  metadataBase: new URL('https://commit-offshore-task.vercel.app'), // Replace with your actual domain
+  openGraph: {
+    title: "Mini Storefront",
+    description: "A modern storefront built with Next.js",
+    url: 'https://commit-offshore-task.vercel.app', // Replace with your actual domain
+    siteName: 'Mini Storefront',
+    type: 'website',
+    images: [
+      {
+        url: '/og-image.jpg', // Add your Open Graph image
+        width: 1200,
+        height: 630,
+        alt: 'Mini Storefront',
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
