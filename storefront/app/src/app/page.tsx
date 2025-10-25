@@ -1,4 +1,4 @@
-import { getAllProducts, getProductCategories, getProductsByCategory, varFiltersCg } from '@/lib/api';
+import { getAllProducts, getProductCategories, getProductsByCategory, varFiltersCg, applyFiltersAndSort } from '@/lib/api';
 import ProductListWithFilters from '@/components/ProductListWithFilters';
 
 export const metadata = {
@@ -23,17 +23,29 @@ interface HomePageProps {
 
 export default async function HomePage({ searchParams }: HomePageProps) {
   const params = await searchParams;
-  const categoryParam = typeof params.category === 'string' ? params.category : undefined;
 
-  // Fetch products based on URL query parameter or varFiltersCg default
+  // Extract all filter parameters from URL
+  const categoryParam = typeof params.category === 'string' ? params.category : undefined;
+  const sortParam = typeof params.sort === 'string' ? params.sort : varFiltersCg.sortOrder;
+  const minPriceParam = typeof params.minPrice === 'string' ? Number(params.minPrice) : undefined;
+  const maxPriceParam = typeof params.maxPrice === 'string' ? Number(params.maxPrice) : undefined;
+
+  // Fetch products based on category or varFiltersCg default
   const initialCategory = categoryParam || varFiltersCg.defaultCategory;
 
-  const [products, categories] = await Promise.all([
+  const [fetchedProducts, categories] = await Promise.all([
     initialCategory === 'all' || !categoryParam
       ? getAllProducts()
       : getProductsByCategory(categoryParam),
     getProductCategories(),
   ]);
+
+  // Apply server-side filtering and sorting based on URL params
+  const products = applyFiltersAndSort(fetchedProducts, {
+    minPrice: minPriceParam,
+    maxPrice: maxPriceParam,
+    sortOrder: sortParam,
+  });
 
   return (
     <main className="min-h-screen bg-gray-50 py-8">
